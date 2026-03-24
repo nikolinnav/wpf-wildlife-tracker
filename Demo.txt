@@ -1,0 +1,3 @@
+M1;Arya;5;Female;Mammal;Cat;Indoor;34
+B2;Bobi;9;Male;Bird;Falcon;4;60
+F3;Nemo;2;Male;Fish;Orange_clownfish;salty;4

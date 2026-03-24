@@ -1,0 +1,31 @@
+{
+  "$type": "System.Collections.Generic.List`1[[WildlifeTrackerSystem.Animals.Animal, WildlifeTrackerV4]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "WildlifeTrackerSystem.Mammals.Tiger, WildlifeTrackerV4",
+      "LandOfOrigin": "India",
+      "ConservationStatus": "endangered",
+      "Species": "Tiger",
+      "Habitat": "forest",
+      "TeethCount": 34,
+      "Category": "Mammal",
+      "Gender": "Female",
+      "Name": "bella",
+      "Age": 5.0,
+      "Id": "M0"
+    },
+    {
+      "$type": "WildlifeTrackerSystem.Fish.WhiteShark, WildlifeTrackerV4",
+      "SwimmingDepth": 50.0,
+      "SwimmingSpeed": 60.0,
+      "Species": "White_shark",
+      "WaterType": "",
+      "FinCount": 5,
+      "Category": "Fish",
+      "Gender": "Male",
+      "Name": "Stojan",
+      "Age": 1.0,
+      "Id": "F1"
+    }
+  ]
+}

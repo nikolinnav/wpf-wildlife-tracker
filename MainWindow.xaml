@@ -1,0 +1,306 @@
+﻿<Window x:Class="WildlifeTrackerSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WildlifeTrackerSystem"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="570" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="45*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Menu for file handling -->
+        <Menu Background="White" Margin="10 0 0 0">
+            <MenuItem Name="mnuFile" Header="File" FontSize="14" FontFamily="TimesNewRoman">
+                <MenuItem Name="mnuFileNew" Header="New    Ctrl+N" Click="mnuFileNew_Click"/>
+                <Separator/>
+                <MenuItem Name="mnuFileOpen" Header="Open..." >
+                    <MenuItem Name="openTxtFile" Header="Text File" Click="openTxtFile_Click"/>
+                    <MenuItem Name="openJson" Header="JSON" Click="openJson_Click"/>
+                </MenuItem>
+                <MenuItem Name="mnuFileSave" Header="Save" Click="mnuFileSave_Click"/>
+                <MenuItem Name="mnuFileSaveAs" Header="Save as...">
+                    <MenuItem Name="saveAsTxtFile" Header="Text File" Click="saveAsTxtFile_Click"/>
+                    <MenuItem Name="saveAsJson" Header="JSON" Click="saveAsJson_Click"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Name="mnuFileXml" Header="XML">
+                    <MenuItem Name="xmlOpen" Header="Open" Click="xmlOpen_Click"/>
+                    <MenuItem Name="xmlSave" Header="Save" Click="xmlSave_Click"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Name="mnuFileExit" Header="Exit     Alt+X" Click="mnuFileExit_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- GroupBox for Animal Specifications input -->
+        <GroupBox Grid.Row="1" Header="Animal Specifications" FontSize="13" Margin="15,15,5,8" Padding="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Column 0 is divided in 2 rows, one for general animal data and another for category specific data -->
+                <Grid Grid.Column="0" Margin="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55*"/>
+                        <RowDefinition Height="45*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- General Animal Data -->
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions >
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions >
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions >
+
+                        <!--Label and TextBox for Name -->
+                        <Label Grid.Row="0" Grid.Column="0" Name="lblName" Content="Name" FontSize="12"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Name="txtName" FontSize="12" Height="20" VerticalAlignment="Top" Margin="0,5,0,0" />
+
+                        <!-- Label and TextBox for Age -->
+                        <Label Grid.Row="1" Grid.Column="0" Name="lblAge" Content="Age" FontSize="12"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Name="txtAge" Height="20" Width="70" FontSize="12" Margin="0,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+
+                        <!-- Label and ComboBox for Gender -->
+                        <Label Grid.Row="2" Grid.Column="0" Name="lblGender" Content="Gender" FontSize="12"/>
+                        <ComboBox Grid.Row="2" Grid.Column="1" Name="cmbGender" FontSize="12" Height="20" Margin="0,5,0,0" VerticalAlignment="Top"/>
+                    </Grid>
+
+                    <!-- GroupBox for category spacific data -->
+                    <GroupBox Grid.Row="1" Name="gbxCategorySpecificData" FontSize="13" Margin="5,5,5,0" Padding="5">
+                        <!-- Header is determined at runtime -->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60*"/>
+                                <ColumnDefinition Width="40*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Label and TextBox pair 1 (The content of the label will be determined at runtime depending on the selected category) -->
+                            <Label Grid.Row="0" Grid.Column="0" Name="lblCategoryData1" FontSize="12"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Name="txtCategoryData1" FontSize="12" Height="20" VerticalAlignment="Top" Margin="0,3,0,0"/>
+
+                            <!-- Label and TextBox pair 2 -->
+                            <Label Grid.Row="1" Grid.Column="0" Name="lblCategoryData2" FontSize="12"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Name="txtCategoryData2" FontSize="12" Height="20" VerticalAlignment="Top" Margin="0,3,0,0"/>
+                        </Grid>
+                        <!-- Category Specifications Grid -->
+                    </GroupBox>
+                    <!-- Category Specifications GroupBox -->
+                </Grid>
+                <!-- Animal Specifications Grid Column 1 -->
+
+                <!-- Column 1 is divided in 2 rows, one for Category type list and another for species specifications -->
+                <Grid Grid.Column="1" Margin="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55*"/>
+                        <RowDefinition Height="45*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Category Type-->
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Name="lblCategoryType" Content="Category Type" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Height="26"/>
+                        <ListBox Grid.Row="1" Name="lbxCategoryType" SelectionChanged="lbxCategoryType_SelectionChanged" />
+                    </Grid>
+
+                    <!-- Species specifications -->
+                    <GroupBox Grid.Row="1" Name="gbxSpeciesSpecifications" Margin="3" Padding="3" FontSize="13">
+                        <!-- Header is determined at runtime -->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="111*"/>
+                                <ColumnDefinition Width="68*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Label and TextBox pair 1 -->
+                            <Label Grid.Row="0" Grid.Column="0" Name="lblSpeciesData1" FontSize="12"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Name="txtSpeciesData1" FontSize="12" Height="20" VerticalAlignment="Top" Margin="0,3,0,0"/>
+                            <!-- label and textBox pair 2 -->
+                            <Label Grid.Row="1" Grid.Column="0" Name="lblSpeciesData2" FontSize="12"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Name="txtSpeciesData2" FontSize="12" Height="20" VerticalAlignment="Top" Margin="0,3,0,0"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+                <!-- Category Type and Species Specifications Grid-->
+
+                <!-- List of species, CheckBox for displaying all species, Button for adding the animal -->
+                <Grid Grid.Column="2" Margin="3,0,3,3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="23*"/>
+                        <RowDefinition Height="114*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="33*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Label Species -->
+                    <Label Name="lblSpecies" Content="Species" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Width="49"/>
+                    <!-- ListBox for Species -->
+                    <ListBox Grid.Row="1" Margin="0,1,0,0" Name="lbxSpecies" SelectionChanged="lbxSpecies_SelectionChanged"/>
+                    <!-- CheckBox and Label for displaying all species -->
+                    <Grid Grid.Row="2" Margin="0,5,0,34" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="9*"/>
+                            <ColumnDefinition Width="58*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Name="checkDisplayAllAnimals" VerticalAlignment="Center" HorizontalAlignment="Center" Height="15" Width="16" Checked="checkDisplayAllAnimals_Checked" Unchecked="checkDisplayAllAnimals_Unchecked"/>
+                        <Label Name="lblDisplayllSpecies" Content="Display all animals" FontSize="12" Grid.Column="1"/>
+                    </Grid>
+                    <!-- Button for adding an animal -->
+                    <Button Grid.Row="3" Name="btnAddAnimal" Height="25" Margin="4,2,0,0" Content="Add this animal" VerticalAlignment="Top" Click="btnAddAnimal_Click"/>
+                </Grid>
+
+                <!-- Load animal Photo -->
+                <Grid Grid.Column="3" Margin="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="165*"/>
+                        <RowDefinition Height="38*"/>
+                    </Grid.RowDefinitions>
+                    <!-- Place for the image -->
+                    <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="1.5" Margin="0,0,0,7">
+                        <Viewbox Name="imgHolder">
+                            <Image Name="image" Stretch="Uniform"/>
+                        </Viewbox>
+                    </Border>
+                    <!-- Button for uploading an image -->
+                    <Button Grid.Row="1" Name="btnUploadImage" Content="Upload image"  Height="25" VerticalAlignment="Center" Click="btnUploadImage_Click"/>
+                </Grid>
+            </Grid>
+            <!-- Animal Specifications Grid -->
+        </GroupBox>
+
+
+        <!-- List of registered Animals an Food Schedule -->
+        <GroupBox Grid.Row="2" Header="List of registered animals" FontSize="13" Margin="15,8,5,15" Padding="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="30*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- TextBlock for general info about the selected animal -->
+                <TextBlock Grid.Column="0"  Name="txbRegisteredAnimal" Background="#FFE6E6E6"  HorizontalAlignment="Stretch" Padding="5" Margin="5,0"/>
+
+                <!-- ListView for displaying a list of added animals -->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="12*"/>
+                        <RowDefinition Height="58*"/>
+                        <RowDefinition Height="15*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <RadioButton Name="rbtnSortByName" Content="Sort by name (ascending)" Checked="rbtnSortByName_Checked" Margin="0,0,30,0"/>
+                        <RadioButton Name="rbtnSortByCategory" Content="Sort by category" Checked="rbtnSortByCategory_Checked"/>
+                    </StackPanel>
+                
+                <ListView Grid.Row="1" Name="listViewAnimals" HorizontalContentAlignment="Stretch" SelectionChanged="listViewAnimals_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" Width="50" DisplayMemberBinding= "{Binding Id}"/>
+                            <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Age" Width="100" DisplayMemberBinding="{Binding Age}"/>
+                            <GridViewColumn Header="Gender" Width="90" DisplayMemberBinding="{Binding Gender}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                
+                    <!-- Grid for Change and Delete buttons -->
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Name="btnChange" Content="Change" Width="90" Margin="1,5,0,0" Click="btnChange_Click"/>
+                        <Button Grid.Column="1" Name="btnDelete" Content="Delete" Width="90" Margin="1,5,0,0" Click="btnDelete_Click"/>
+                    </Grid>
+                   
+                    
+                </Grid>
+                <!-- Grid for ListBox for Food Schedule and title -->
+                <Grid Grid.Column="2" Margin="5,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="12*"/>
+                        <RowDefinition Height="58*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Grid for the title of the ListBox -->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Name="lblEaterType" Content="Eater Type" FontSize="14" Margin="0,-2,0,2" />
+                        <Label Name="lblEaterTypeOutput" FontSize="14" Grid.ColumnSpan="2" Margin="134,-2,0,2"/>
+                    </Grid>
+
+                    <ListBox Grid.Row="1" Name="lbxFoodSchedule"/>
+                </Grid>
+            </Grid>
+
+
+        </GroupBox>
+        
+        <!-- Grid for food items List Box -->
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="12*"/>
+                <RowDefinition Height="58*"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Grid for the Labels -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
+                <Label Grid.Column="1" Content="Ingredients" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
+            </Grid>
+            
+            <!-- List Box for food items -->
+            <ListBox Grid.Row="1" Name="lbxFood" Margin="5,0,5,5"/>
+        </Grid>
+
+        <!-- Grid for buttons related to the food list -->
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="65*"/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Name="btnFoodWindow" Content="Open Food Items Window" Height="30" Width="200" VerticalAlignment="Top" Margin="0,15" Click="btnFoodWindow_Click"/>
+            <Button Grid.Row="1" Name="btnAnimalAndFood" Content="Connect animal to food item" Height="30" Width="200" VerticalAlignment="Top" Click="btnAnimalAndFood_Click"/>
+        </Grid>
+    </Grid>
+</Window>
