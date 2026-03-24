@@ -1,5 +1,5 @@
 # 🦎 Wildlife Tracker
-A desktop app for managing and tracking animals, built with C# and WPF as part of a school assignment. It's a 
+A desktop app for managing and tracking animals, built with C# and WPF as part of a university course assignment. It's a 
 functional tool that puts object-oriented programming principles to work together with a UI.
 
 ## What it does
@@ -15,7 +15,7 @@ in Json and XML formats.
 - WPF (Windows Presentation Foundation)
 
 ## Project purpose
-This started as a school assignment, but it turned into a decent showcase of desktop development and OOP design.
+This started as a C# course assignment, but it turned into a decent showcase of desktop development and OOP design.
 
 ## How to Run
 Requirements: Windows OS, Visual Studio (2022)
